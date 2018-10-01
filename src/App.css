@@ -1,0 +1,87 @@
+.App {
+
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+  float: left;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+h1,h2,h3,h4,h5,h6 { 
+  font-weight: bold;
+}
+
+h1 {  font-size: 1.9em; }
+
+h2 { font-size: 1.4em; }
+
+h3 { font-size: 1.25em; }
+
+.nav {
+  width: 20%;
+  float: right;
+}
+
+.nav ul li {
+  display: inline-block;
+  padding: 0 .3em;
+}
+
+.row {
+  display: flex;
+  flex-flow: row wrap;
+  max-width: 75rem;
+  margin: 0 auto;
+}
+
+.column {
+  padding: .8em;
+}
+
+.c2 {
+  flex-basis: calc(22% - 1.6em);
+  padding: .8em;
+}
+
+.c12 {
+  flex-basis: calc(100% - 1.6em);
+}
+
+.column-3 li {
+  text-align: center;
+}
+
+.content {
+  margin: 0 1em;
+}
+
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: #ff5601;
+  transition: width .3s ease;
+}
