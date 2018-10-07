@@ -74,7 +74,7 @@ class GuildRoster extends Component {
                         </li>
                         <li><h3 key={char.character.name}><a href={`https://worldofwarcraft.com/en-us/character/${char.character.realm}/${char.character.name}`} title={`WoW armoury${char.character.name}`}>{char.character.name}</a></h3></li>
                         <li key={char.character.level}>Level: {char.character.level}</li>
-                        <li key={char.character.acheivementPoints}>Class: {char.character.class}</li>
+                        <li key={char.character.acheivementPoints}>Class: {getClassName(char.character.class)}</li>
                         <li key={char.rank}>Rank: {char.rank}</li>
                 </ul>
                 )}
@@ -83,4 +83,53 @@ class GuildRoster extends Component {
         }
     }
 }
+
+// DH: Returns a class name based on the class id provided
+function getClassName(classID) {
+    var className = '';
+
+    switch(classID){
+        case 1:
+            className = 'Warrior'
+            break;
+        case 2:
+            className = 'Paladin'
+            break;
+        case 3:
+            className = 'Hunter'
+            break;
+        case 4:
+            className = 'Rogue'
+            break;
+        case 5:
+            className = 'Priest'
+            break;
+        case 6:
+            className = 'Death Knight'
+            break;
+        case 7:
+            className = 'Shaman'
+            break;
+        case 8:
+            className = 'Mage'
+            break;
+        case 9:
+            className = 'Warlock'
+            break;
+        case 10:
+            className = 'Monk'
+            break;
+        case 11:
+            className = 'Druid'
+            break;
+        case 12:
+            className = 'Demon Hunter'
+            break;
+        default:
+            className = 'Unknown'
+    }        
+
+    return className;
+}
+
 export default GuildRoster;

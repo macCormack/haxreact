@@ -48,10 +48,59 @@ class RaidRoster extends Component {
                     <li><img src={charImg} alt="character portrait"/></li>
                     <li><h3 key={1}>{character.name}</h3></li>
                     <li><div key={2}>{character.realm}</div></li>
-                    <li><div key={3}>{character.class}</div></li>
+                    <li><div key={3}>{getClassName(character.class)}</div></li>
                 </ul>
             ];
         }
     }
 }
+
+// DH: Returns a class name based on the class id provided
+function getClassName(classID) {
+    var className = '';
+
+    switch(classID){
+        case 1:
+            className = 'Warrior'
+            break;
+        case 2:
+            className = 'Paladin'
+            break;
+        case 3:
+            className = 'Hunter'
+            break;
+        case 4:
+            className = 'Rogue'
+            break;
+        case 5:
+            className = 'Priest'
+            break;
+        case 6:
+            className = 'Death Knight'
+            break;
+        case 7:
+            className = 'Shaman'
+            break;
+        case 8:
+            className = 'Mage'
+            break;
+        case 9:
+            className = 'Warlock'
+            break;
+        case 10:
+            className = 'Monk'
+            break;
+        case 11:
+            className = 'Druid'
+            break;
+        case 12:
+            className = 'Demon Hunter'
+            break;
+        default:
+            className = 'Unknown'
+    }        
+
+    return className;
+}
+
 export default RaidRoster;
