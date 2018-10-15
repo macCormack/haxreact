@@ -12,7 +12,7 @@ class About extends Component {
 
     componentDidMount() {
         fetch(
-            'http://localhost/wordpress/wp-json/wp/v2/pages/48'
+            'http://localhost/staging/wordpress/wp-json/wp/v2/pages/9'
             ).then(res => res.json())
             .then(
                 (result) => {
