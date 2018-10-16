@@ -12,7 +12,7 @@ class Home extends Component {
 
     // fake authentication Promise
     authenticate(){
-        return new Promise(resolve => setTimeout(resolve, 2000))
+        return new Promise(resolve => setTimeout(resolve, 1000))
     }
 
     componentDidMount() {
@@ -26,7 +26,7 @@ class Home extends Component {
             setTimeout(() => {
               // remove from DOM
               ele.outerHTML = ''
-            }, 2000)
+            }, 1000)
           }
 // MAC: Fetch data for output          
         fetch(
