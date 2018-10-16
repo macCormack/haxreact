@@ -23,20 +23,15 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+a {
+  color: #ff5601;
 }
 
-h1,h2,h3,h4,h5,h6 { 
-  font-weight: bold;
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
-
-h1 {  font-size: 1.9em; }
-
-h2 { font-size: 1.4em; }
-
-h3 { font-size: 1.25em; }
 
 .nav {
   width: 20%;
@@ -46,6 +41,17 @@ h3 { font-size: 1.25em; }
 .nav ul li {
   display: inline-block;
   padding: 0 .3em;
+}
+
+.dropdown {
+  position: relative;
+}
+.dropdown-container{
+  position: fixed;
+  bottom: 0;
+}
+
+.dropdown-item {
 }
 
 .row {
@@ -84,4 +90,64 @@ h3 { font-size: 1.25em; }
   height: 3px;
   background: #ff5601;
   transition: width .3s ease;
+}
+
+.page-loader {
+  display: block;
+  position: absolute;
+  left: calc(50% - 50px);
+  top: calc(50% - 50px);
+  transition: all .3s ease;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader{
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* LOADER 1 */
+
+#loader-1:before, #loader-1:after{
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: 10px solid transparent;
+  border-top-color: #3498db;
+}
+
+#loader-1:before{
+  z-index: 100;
+  animation: spin 1s infinite;
+}
+
+#loader-1:after{
+  border: 10px solid #ccc;
+}
+
+@keyframes spin{
+  0%{
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100%{
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

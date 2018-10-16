@@ -8,13 +8,29 @@ class GuildRoster extends Component {
             error: null,
             isLoaded: false,
             character: [],
-            // wowClass: [],
-            dataRoute: 'https://us.api.battle.net/wow/guild/illidan/HAX?fields=members&locale=en_US&apikey=gyu8rq8enunpykunew34bmnnubbb6qah',
-            // classRoute: 'https://us.api.battle.net/wow/data/character/classes?locale=en_US&apikey=gyu8rq8enunpykunew34bmnnubbb6qah'
+            dataRoute: 'https://us.api.battle.net/wow/guild/illidan/HAX?fields=members&locale=en_US&apikey=gyu8rq8enunpykunew34bmnnubbb6qah',        
         };
     }
-// MAC: Mount the dataroute from constructor, fetch the data then populate the character array
+
+    authenticate(){
+        return new Promise(resolve => setTimeout(resolve, 2000))
+    }
+
+
     componentDidMount() {
+        // MAC: Wrap whole fetch function and page-loader hiding in a fake authentication
+        this.authenticate().then(() => {
+
+          const ele = document.getElementById('page-loader')
+          if(ele){
+            // fade out
+            ele.classList.add('hidden')
+            setTimeout(() => {
+              // remove from DOM
+              ele.outerHTML = ''
+            }, 2000)
+          }
+// MAC: Mount the dataRoute from constructor, fetch the data then populate the character array
         fetch(this.state.dataRoute).then(res => res.json())
             .then(
                 (result) => {
@@ -30,24 +46,7 @@ class GuildRoster extends Component {
                     });
                 }
             )
-// MAC: 2nd fetch that grabs classID and Name. Not useful right now until switches are removed.
-        // .then( fetch(this.state.classRoute).then(res => res.json())
-        //     .then(
-        //         (result) => {
-        //             this.setState({
-        //                 isLoaded: true,
-        //                 wowClass: result.classes
-        //             });
-        //         },
-        //     (error) => {
-        //         this.setState({
-        //             isLoaded: true,
-        //             error
-        //         })
-        //     }
-        //   )
-        // )
-               
+        })
     }
 
     render() {
@@ -57,7 +56,7 @@ class GuildRoster extends Component {
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded){
-            return <div>Loading...</div>
+            return <div></div>
         } else {
 // MAC: Build the page
             console.log(this.state);
@@ -66,9 +65,6 @@ class GuildRoster extends Component {
                     <div className="column c12"><h1>Guild Roster</h1>
                 </div>
 {/* MAC: Map function for showing class ID and Name from 2nd fetch.*/}
-                {/* wowClass.map((c, i) => 
-                    <ul key={c.id} className="column c12"><li>id: {c.id} Name: {c.name}</li></ul>
-                )*/}
                 {character.map((char, i) => 
                 <ul key={i} className="column c2">
                         <li key={char.character.thumbnail}>

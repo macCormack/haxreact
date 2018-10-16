@@ -10,7 +10,22 @@ class About extends Component {
         };
     }
 
+    authenticate(){
+        return new Promise(resolve => setTimeout(resolve, 2000))
+    }
+
     componentDidMount() {
+        this.authenticate().then(() => {
+          const ele = document.getElementById('page-loader')
+          if(ele){
+            // fade out
+            ele.classList.add('hidden')
+            setTimeout(() => {
+              // remove from DOM
+              ele.outerHTML = ''
+            }, 2000)
+          }
+
         fetch(
             'http://localhost/staging/wordpress/wp-json/wp/v2/pages/9'
             ).then(res => res.json())
@@ -28,7 +43,8 @@ class About extends Component {
                     });
                 }
             )
-               
+        })
+ 
     }
 
     render() {
@@ -38,7 +54,7 @@ class About extends Component {
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded){
-            return <div>Loading...</div>
+            return <div></div>
         } else {
             return (
                 <div className="row">

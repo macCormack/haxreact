@@ -11,7 +11,24 @@ class RaidRoster extends Component {
         };
     }
 
+    authenticate(){
+        return new Promise(resolve => setTimeout(resolve, 2000))
+    }
+
     componentDidMount() {
+        // MAC: Wrap whole fetch function and page-loader hiding in a fake authentication
+        this.authenticate().then(() => {
+
+          const ele = document.getElementById('page-loader')
+          if(ele){
+            // fade out
+            ele.classList.add('hidden')
+            setTimeout(() => {
+              // remove from DOM
+              ele.outerHTML = ''
+            }, 2000)
+          }
+
         fetch(this.state.charRoute).then(res => res.json())
             .then(
                 (result) => {
@@ -27,7 +44,7 @@ class RaidRoster extends Component {
                     });
                 }
             )
-        
+        })
     }  
 
     render() {
@@ -38,7 +55,7 @@ class RaidRoster extends Component {
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded){
-            return <div>Loading...</div>
+            return <div></div>
         } else {
             return [
                 <div>

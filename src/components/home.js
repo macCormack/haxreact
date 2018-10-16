@@ -10,7 +10,25 @@ class Home extends Component {
         };
     }
 
+    // fake authentication Promise
+    authenticate(){
+        return new Promise(resolve => setTimeout(resolve, 2000))
+    }
+
     componentDidMount() {
+// MAC: Wrap whole fetch function and page-loader hiding in a fake authentication
+        this.authenticate().then(() => {
+
+          const ele = document.getElementById('page-loader')
+          if(ele){
+            // fade out
+            ele.classList.add('hidden')
+            setTimeout(() => {
+              // remove from DOM
+              ele.outerHTML = ''
+            }, 2000)
+          }
+// MAC: Fetch data for output          
         fetch(
             'http://localhost/staging/wordpress/wp-json/wp/v2/posts'
             ).then(res => res.json())
@@ -28,7 +46,7 @@ class Home extends Component {
                     });
                 }
             )
-               
+        })
     }
 
     render() {
@@ -37,13 +55,14 @@ class Home extends Component {
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded){
-            return <div>Loading...</div>
+        // MAC: Need this here or react shit's its fucking face
+            return <div></div>
         } else {
             console.log(this.state);
             return (
                 <div className="row">
-                    {this.state.post.map((char, i) => 
-                    <div>{post.content.rendered}</div>
+                    {this.state.post.map((i) => 
+                    <div key={post.id}>{post.content}</div>
                 )}
 
                 </div>
