@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
 
+var sortByProperty = function (property) {
+
+    return function (x, y) {
+
+        return ((x[property] === y[property]) ? 0 : ((x[property] > y[property]) ? 1 : -1));
+
+    };
+
+};
+
 class GuildRoster extends Component {
 // MAC: Define base state and pass through variables needed for fetch
     constructor(props) {
@@ -51,15 +61,16 @@ class GuildRoster extends Component {
 
     render() {
 // MAC: Grab values of error, isLoaded and character for mapping and if statement
-        const { error, isLoaded, character, /*wowClass*/} = this.state;
-        
+        const { error, isLoaded, character, } = this.state;
+        character.sort(sortByProperty('rank'));
+        console.log(this.state);
+
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded){
             return <div></div>
         } else {
 // MAC: Build the page
-            console.log(this.state);
             return [
                 <div className="row">
                     <div className="column c12"><h1>Guild Roster</h1>
