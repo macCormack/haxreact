@@ -1,0 +1,100 @@
+{
+  "classes": [
+        {
+			"id": "1",
+			"name": "Warrior",
+			"role": {
+				"need": "DPS"
+			},
+			"active": true
+		},
+		{
+			"id": "2",
+			"name": "Paladin",
+			"role": {
+				"need": "DPS"
+			},
+			"active": true
+		},
+		{
+			"id": "3",
+			"name": "Hunter",
+			"role": {
+				"need": "DPS"
+			},
+			"active": false
+		},
+		{
+			"id": "4",
+			"name": "Rogue",
+			"role": {
+				"need": "DPS"
+			},
+			"active": true
+		},
+		{
+			"id": "5",
+			"name": "Priest",
+			"role": {
+				"need": "DPS"
+			},
+			"active": false
+		},
+		{
+			"id": "6",
+			"name": "Death Knight",
+			"role": {
+				"need": "DPS"
+			},
+			"active": true
+		},
+		{
+			"id": "7",
+			"name": "Shaman",
+			"role": {
+				"need": "DPS"
+			},
+			"active": false
+		},
+		{
+			"id": "8",
+			"name": "Mage",
+			"role": {
+				"need": "DPS"
+			},
+			"active": false
+		},
+		{
+			"id": "9",
+			"name": "Warlock",
+			"role": {
+				"need": "DPS"
+			},
+			"active": true
+		},
+		{
+			"id": "10",
+			"name": "Monk",
+			"role": {
+				"need": "DPS"
+			},
+			"active": true
+		},
+		{
+			"id": "11",
+			"name": "Druid",
+			"role": {
+				"need": "DPS"
+			},
+			"active": true
+		},
+		{
+			"id": "12",
+			"name": "Demon Hunter",
+			"role": {
+				"need": "DPS"
+			},
+			"active": true
+		}
+  ]
+}

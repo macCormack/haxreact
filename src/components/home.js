@@ -1,73 +1,80 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import axios from "axios";
 
-class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            error: null,
-            isLoaded: false,
-            post: []
-        };
-    }
+import ArticlePreview from "./articlePreview";
 
-    // fake authentication Promise
+export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: []
+    };
+  }
+
+    // MAC: Fake authentication to give a promise
     authenticate(){
-        return new Promise(resolve => setTimeout(resolve, 1000))
+        return new Promise(resolve => setTimeout(resolve, 500))
     }
 
-    componentDidMount() {
-// MAC: Wrap whole fetch function and page-loader hiding in a fake authentication
-        this.authenticate().then(() => {
 
-          const ele = document.getElementById('page-loader')
-          if(ele){
-            // fade out
-            ele.classList.add('hidden')
-            setTimeout(() => {
-              // remove from DOM
-              ele.outerHTML = ''
-            }, 1000)
-          }
-// MAC: Fetch data for output          
-        fetch(
-            'http://localhost/staging/wordpress/wp-json/wp/v2/posts'
-            ).then(res => res.json())
-            .then(
-                (res) => {
-                    this.setState({
-                        isLoaded: true,
-                        post: res
-                    }); console.log(this.state);
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
-        })
-    }
+  componentDidMount() {
+    this.authenticate().then(() => {
 
-    render() {
-        const { error, isLoaded, post} = this.state;
-        
-        if (error) {
-            return <div>Error: {error.message}</div>;
-        } else if (!isLoaded){
-        // MAC: Need this here or react shit's its fucking face
-            return <div></div>
-        } else {
-            console.log(this.state);
-            return (
-                <div className="row">
-                    {this.state.post.map((i) => 
-                    <div key={post.id}>{post.content}</div>
-                )}
-
-                </div>
-            );
+        const ele = document.getElementById('page-loader')
+        if(ele){
+          // fade out
+          ele.classList.add('hidden')
+          setTimeout(() => {
+            // remove from DOM
+            ele.outerHTML = ''
+          }, 500)
         }
+    axios
+    // MAC: Fetch data 
+      .get(
+        "http://localhost/staging/wordpress/wp-json/wp/v2/posts/?_embed"
+      )
+      .then(res => {
+        this.setState({ posts: res.data });
+        console.log(res.data);
+      })
+      .catch(error => console.log(error));
+    })
+  }
+
+  // mapFilter(filter) {
+  //   const mapArray = 
+  // }
+
+  
+  render() {
+    // console.log();
+    return (
+      <div className="container">
+        <div className="row">
+          <h1 className="page-title"><span className="title-inner">LATEST NEWS</span></h1>
+          <div className="col-12">
+            <button onClick={this.filterReset.bind(this)}>All</button>
+            <button onClick={this.filterWoW.bind(this)}>WoW</button>
+          </div>
+          {/* MAC: Map posts and return the article preview output. see articlePreview.js */}
+          {this.state.posts.map(post => <ArticlePreview key={post.id} post={post} />)}
+        </div>
+      </div>
+    );
+  }
+  
+  // MAC: Filter out the posts array
+    filterWoW(event) { 
+      const filterWow = this.state.posts.filter(x => x.categories[0] === 4);
+      this.setState({posts: filterWow});
+      console.log(filterWow);
+    
+    }
+  // MAC: Where i'm attempting to reset the array
+    filterReset(event) { 
+      const resetPosts = this.state.posts.filter(x => x.categories[0] === 1 && 4);
+      this.setState({posts: resetPosts });
+      console.log(resetPosts);
     }
 }
-export default Home;

@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 
-class About extends Component {
+class Article extends Component {
     constructor(props) {
         super(props);
         this.state = {
             error: null,
             isLoaded: false,
-            page: [],
-            fetchPage: 'http://localhost/staging/wordpress/wp-json/wp/v2/pages/9?_embed'
+            post: [],
+            fetchPost: 'http://localhost/staging/wordpress/wp-json/wp/v2/posts/' + this.props.match.params.id + '?_embed'
         };
     }
 
     authenticate(){
-        return new Promise(resolve => setTimeout(resolve, 0))
+        return new Promise(resolve => setTimeout(resolve, 1000))
     }
 
     componentDidMount() {
@@ -24,15 +24,15 @@ class About extends Component {
             setTimeout(() => {
               // remove from DOM
               ele.outerHTML = ''
-            }, 0)
+            }, 1000)
           }
 
-        fetch(this.state.fetchPage).then(res => res.json())
+        fetch(this.state.fetchPost).then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        page: result
+                        post: result
                     });
                 },
                 (error) => {
@@ -47,7 +47,7 @@ class About extends Component {
     }
 
     render() {
-        const { error, isLoaded, page} = this.state;
+        const { error, isLoaded, post} = this.state;
         console.log(this.state)
 
         
@@ -56,26 +56,22 @@ class About extends Component {
         } else if (!isLoaded){
             return <div></div>
         } else {
-            const featImg = page._embedded['wp:featuredmedia'][0].source_url;
-
-            const heroStyle = {
-                backgroundImage: 'url('+ featImg +')'
-            };
+            const featImg = post._embedded['wp:featuredmedia'][0].source_url;
+            
             return (
                 <div>
                     <div className="hero">
-                        <div className="bg-img" style={heroStyle}>
-                        </div>
+                        <img className="hero-img" src={featImg} alt={post._embedded['wp:featuredmedia'][0].slug}></img>
                     </div>
-                    <div className="container">
-                        <h1 key={1} className="page-title">
-                            <span className="title-inner text-uppercase">{page.title.rendered}</span>
+                    <div key={post.id} className="container">
+                        <h1
+                            dangerouslySetInnerHTML={{__html: post.title.rendered}}>
                         </h1>
-                        <div key={2} dangerouslySetInnerHTML={{__html: page.content.rendered}}></div>
+                        <div dangerouslySetInnerHTML={{__html: post.content.rendered}}></div>
                     </div>
                 </div>
             );
         }
     }
 }
-export default About;
+export default Article;

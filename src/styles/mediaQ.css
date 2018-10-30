@@ -1,0 +1,24 @@
+@media (min-width: 768px) {
+  .row {
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .bg-img {
+    height: 500px;
+  }
+
+  .sidebar {
+    width: 15%;
+  }
+
+  .guild-roster, .raiders {
+    width: 85%;
+  }
+}

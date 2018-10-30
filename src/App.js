@@ -1,15 +1,18 @@
 import  React from  'react';
+import $ from 'jquery';
 import Main  from './components/main';
 import  Header  from  './components/header';
-import $ from 'jquery';
+import Footer from './components/footer'
 import  '../node_modules/bootstrap/dist/css/bootstrap.css';
 import  '../node_modules/bootstrap/dist/js/bootstrap.bundle.js';
-import  './App.css';
+import  './styles/App.css';
+import './styles/mediaQ.css'
 
 const App = () => (
- <div  className="App">
+ <div  className="content-wrapper">
     <Header/>
     <Main />
+    <Footer />
   </div>
 )
 export  default  App;

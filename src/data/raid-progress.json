@@ -1,0 +1,38 @@
+{
+	"raid": "Uldir",
+	"total_bosses": 8,
+	"bosses": [
+		{
+			"name": "Taloc",
+			"difficulty": "Mythic"
+		},
+		{
+			"name": "Mother",
+			"difficulty": "Heroic"
+		},
+		{
+			"name": "Fetid",
+			"difficulty": "Heroic"
+		},
+		{
+			"name": "Vectis",
+			"difficulty": "Heroic"
+		},
+		{
+			"name": "Zek'voz",
+			"difficulty": "Heroic"
+		},
+		{
+			"name": "Zul",
+			"difficulty": "Heroic"
+		},
+		{
+			"name": "Mythrax",
+			"difficulty": "Heroic"
+		},
+		{
+			"name": "G'huun",
+			"difficulty": "Heroic"
+		}
+	]
+}

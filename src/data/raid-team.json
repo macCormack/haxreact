@@ -1,0 +1,110 @@
+{
+	"raiders": [
+		{
+			"name": "Arkturo",
+			"class": "Paladin",
+			"role": "Raid Leader / Tank",
+			"realm": "illidan",
+			"thumbnail": "illidan/15/176262927-avatar.jpg"
+		},
+		{
+			"name": "Moriko",
+			"class": "Demon Hunter",
+			"role": "Tank",
+			"realm": "illidan",
+			"thumbnail": "illidan/120/178408056-avatar.jpg"
+		},
+		{
+			"name": "Fiisting",
+			"class": "Monk",
+			"role": "Heals",
+			"realm": "illidan",
+			"thumbnail": "illidan/151/173185943-avatar.jpg"
+		},
+		{
+			"name": "Eluneth",
+			"class": "Priest",
+			"role": "Heals",
+			"realm": "illidan",
+			"thumbnail": "illidan/46/173182510-avatar.jpg"
+		},
+		{
+			"name": "Shocklatpain",
+			"class": "Shaman",
+			"role": "Heals",
+			"realm": "illidan",
+			"thumbnail": "illidan/71/176262471-avatar.jpg"
+		},
+		{
+			"name": "Aerynne",
+			"class": "Hunter",
+			"role": "DPS",
+			"realm": "illidan",
+			"thumbnail": "illidan/171/184619691-avatar.jpg"
+		},
+		{
+			"name": "Xner",
+			"class": "Rogue",
+			"role": "DPS",
+			"realm": "illidan",
+			"thumbnail": "illidan/9/168965129-avatar.jpg"
+		},
+		{
+			"name": "Youngharambe",
+			"class": "Shaman",
+			"role": "DPS",
+			"realm": "illidan",
+			"thumbnail": "illidan/67/158788419-avatar.jpg"
+		},
+		{
+			"name": "Pwnapple",
+			"class": "Shaman",
+			"role": "DPS",
+			"realm": "illidan",
+			"thumbnail": "illidan/214/176262614-avatar.jpg"
+		},
+		{
+			"name": "Disled",
+			"class": "Druid",
+			"role": "DPS",
+			"realm": "illidan",
+			"thumbnail": "illidan/156/183722652-avatar.jpg"
+		},
+		{
+			"name": "Dielun",
+			"class": "Hunter",
+			"role": "DPS",
+			"realm": "illidan",
+			"thumbnail": "illidan/19/186637075-avatar.jpg"
+		},
+		{
+			"name": "Eireth",
+			"class": "Mage",
+			"role": "DPS",
+			"realm": "illidan",
+			"thumbnail": "illidan/180/184920756-avatar.jpg"
+		},
+
+		{
+			"name": "Neujrd",
+			"class": "Mage",
+			"role": "DPS",
+			"realm": "illidan",
+			"thumbnail": "illidan/156/184628636-avatar.jpg"
+		},
+		{
+			"name": "Shiftystab",
+			"class": "Rogue",
+			"role": "DPS",
+			"realm": "tichondrius",
+			"thumbnail": "tichondrius/108/175046252-avatar.jpg"
+		},
+		{
+			"name": "Cruelhandman",
+			"class": "Warlock",
+			"role": "DPS",
+			"realm": "illidan",
+			"thumbnail": "illidan/65/114201153-avatar.jpg"
+		}
+	]
+}

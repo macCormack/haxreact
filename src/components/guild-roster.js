@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import Recruiting from './helpers/recruit';
 
+// MAC: Generic sorting function used for sorting roster by rank
 var sortByProperty = function (property) {
 
     return function (x, y) {
@@ -18,10 +20,20 @@ class GuildRoster extends Component {
             error: null,
             isLoaded: false,
             character: [],
+            currentPage: 1,
+            charsPerPage: 40,
             dataRoute: 'https://us.api.battle.net/wow/guild/illidan/HAX?fields=members&locale=en_US&apikey=gyu8rq8enunpykunew34bmnnubbb6qah',        
         };
+        this.handleClick = this.handleClick.bind(this);
     }
 
+    handleClick(event) {
+        this.setState({
+            currentPage: Number(event.target.id)
+        });
+    }
+
+// MAC: Fake authentication to give a promise
     authenticate(){
         return new Promise(resolve => setTimeout(resolve, 2000))
     }
@@ -41,28 +53,77 @@ class GuildRoster extends Component {
             }, 2000)
           }
 // MAC: Mount the dataRoute from constructor, fetch the data then populate the character array
-        fetch(this.state.dataRoute).then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        character: result.members
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
+            fetch(this.state.dataRoute).then(res => res.json())
+                .then(
+                    (result) => {
+                        this.setState({
+                            isLoaded: true,
+                            character: result.members
+                        });
+                    },
+                    (error) => {
+                        this.setState({
+                            isLoaded: true,
+                            error
+                        });
+                    }
+                )
         })
     }
 
     render() {
 // MAC: Grab values of error, isLoaded and character for mapping and if statement
-        const { error, isLoaded, character, } = this.state;
+        const { error, isLoaded, character, currentPage, charsPerPage} = this.state;
+//MAC: Sort guild roster by rank acesnding to descending
         character.sort(sortByProperty('rank'));
+
+// MAC: Logic for displaying raid roster 
+        const indexOfLastChar = currentPage * charsPerPage;
+        const indexOfFirstChar = indexOfLastChar - charsPerPage;
+        const currentChar = character.slice(indexOfFirstChar, indexOfLastChar);
+
+// MAC: Map array of returned guild roster and output their values
+        const renderChars = currentChar.map((char, i) => {
+            return (
+                <ul key={i} className="col-6 col-md-3 col-lg-3 guild-roster-char">
+                    <li>
+                        <img src=
+                            {`http://render-us.worldofwarcraft.com/character/${char.character.thumbnail}`}
+                            alt="character portrait"
+                        />
+                    </li>
+                    <li><h6><a href={`https://worldofwarcraft.com/en-us/character/${char.character.realm}/${char.character.name}`} title={`Armoury for ${char.character.name}`}>{char.character.name}</a></h6></li>
+                    <li><b>Level:</b> {char.character.level}</li>
+                    <li><b>Class:</b> {getClassName(char.character.class)}</li>
+                    <li><b>Rank:</b> {getRankName(char.rank)}</li>
+                </ul>
+            );
+        });
+//MAC: Map recruit json and output
+        // const recruit = this.state.recruit.map((r, i) => {
+        //     if( r.active === true )
+        //         return <li className="" key={i}>{r.name}<span className="guild-recruit-role">{r.role.need}</span></li>
+        //         return null
+        // }); //changed
+
+// MAC: Logic for displaying page numbers
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(character.length / charsPerPage); i++) {
+            pageNumbers.push(i);
+        }
+
+        const renderPageNumbers = pageNumbers.map(number => {
+            return (
+                <li
+                    className={(this.state.currentPage === number ? 'active ' : '') + 'pagination-number'}
+                    key={number}
+                    id={number}
+                    onClick={this.handleClick}
+                >
+                    {number}
+                </li>
+            );
+        });
         console.log(this.state);
 
         if (error) {
@@ -72,24 +133,21 @@ class GuildRoster extends Component {
         } else {
 // MAC: Build the page
             return [
-                <div className="row">
-                    <div className="column c12"><h1>Guild Roster</h1>
-                </div>
-{/* MAC: Map function for showing class ID and Name from 2nd fetch.*/}
-                {character.map((char, i) => 
-                <ul key={i} className="column c2">
-                        <li key={char.character.thumbnail}>
-                            <img src=
-                                {`http://render-us.worldofwarcraft.com/character/${char.character.thumbnail}`}
-                                alt="character portrait"
-                            />
-                        </li>
-                        <li><h3 key={char.character.name}><a href={`https://worldofwarcraft.com/en-us/character/${char.character.realm}/${char.character.name}`} title={`Armoury for ${char.character.name}`}>{char.character.name}</a></h3></li>
-                        <li key={char.character.level}><b>Level:</b> {char.character.level}</li>
-                        <li key={char.character.acheivementPoints}><b>Class:</b> {getClassName(char.character.class)}</li>
-                        <li key={char.rank}><b>Rank:</b> {getRankName(char.rank)}</li>
-                </ul>
-                )}
+                <div className="container">
+                    <div className="row">
+                        <div className="width-100">
+                            <h1 className="page-title"><span className="title-inner">Guild Roster</span></h1>
+                        </div>
+                        <div className="guild-roster row">
+                            {renderChars}
+                        <ul className="pagination">
+                            {renderPageNumbers}
+                        </ul>
+                        </div>
+                        <div className="sidebar">
+                            <Recruiting/>
+                        </div>
+                    </div>
                 </div>
             ];
         }
@@ -155,15 +213,21 @@ function getRankName(rankID) {
             rankName = 'Officer'
             break;
         case 2:
-            rankName = 'Recruit Officer'
+            rankName = 'Officer ALTS'
             break;
         case 3:
-            rankName = 'Raiders'
+            rankName = 'Recruit Officer'
             break;
         case 4:
-            rankName = 'Members'
+            rankName = 'Raiders'
             break;
-        case 5: 
+        case 5:
+            rankName = 'ALTS'
+            break;
+        case 6: 
+            rankName = 'Member'
+            break;
+        case 7: 
             rankName = 'Initiate'
             break;
         default: 

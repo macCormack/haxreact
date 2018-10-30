@@ -1,0 +1,45 @@
+.dropdown-toggle {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.navbar-nav .show > .nav-link.dropdown-toggle {
+  color: var(--h-orange);
+}
+
+.navbar-brand {
+  color: #fefe;
+}
+
+.navbar-brand:hover {
+  color: var(--link-hover);
+}
+
+.navbar-toggler-icon svg {
+  fill: var(--light);
+}
+
+.navbar-toggler .navbar-toggler-icon .toggler-open {
+  display: none;
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon .toggler-open {
+  display: block;
+}
+
+.navbar-toggler.collapsed .navbar-toggler-icon .toggler-close {
+  display: none;
+}
+
+.navbar-toggler .navbar-toggler-icon .toggler-close {
+  display: block;
+}
+
+.navbar-nav .nav-link {
+  color: #fefefe;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--link-hover);
+}

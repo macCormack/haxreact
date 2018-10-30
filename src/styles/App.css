@@ -1,0 +1,229 @@
+:root {
+  --h-orange: #ff5601;
+  --link-hover: #FF8934;
+}
+
+a {
+  color: var(--h-orange);
+  transition: color .3s ease;
+}
+
+a:hover {
+  color: var(--h-orange);
+  filter: brightness(100%);
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+.row {
+margin-right: 15px;
+margin-left: 15px;
+}
+
+.pad-b-2 {
+  padding-bottom: 2em; 
+}
+
+.content-wrapper {
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 56px; /* height of footer */
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+}
+
+.container {
+  margin-bottom: 3em;
+}
+
+.page-title {
+  display: block;
+  padding: 1em 0 .5em;
+  width: 100%;
+}
+
+.sub-title {
+  padding: .35em 0 ;
+}
+
+.title-inner {
+  position: relative;
+  display: inline-block;
+  padding-left: 15px;
+}
+
+.title-inner:after {
+  position: absolute;
+  left: 0;
+  content: '';
+  background: var(--h-orange);
+  transform: skewX(30deg);
+  width: calc(100% + 45px);
+  height: calc(100% + 3px);
+  border-right: 5px solid #333;
+  z-index: -1;
+}
+
+.hero {
+  position: relative;
+  margin-bottom: 2em;
+  overflow: hidden;
+}
+
+.hero-title {
+  margin: 0 auto;
+  padding-top: 400px;
+  max-width: 1140px;
+  color: var(--h-orange);
+  text-transform: uppercase;
+}
+
+.hero-img {
+  width: 100%;
+}
+
+.bg-img {
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+}
+
+.sidebar {
+  width: 100%;
+}
+
+
+.guild-roster, .raiders {
+  width: 100%;
+}
+
+.guild-roster-char {
+  padding-bottom: 1.2em;
+}
+
+
+.guild-recruit-role {
+  float: right;
+}
+
+.raider {
+  padding-bottom: 2em;
+}
+
+.thumbnail {
+  text-align: center;
+}
+
+.raider-name {
+  margin: 0 0 .1em;
+}
+
+.pagination {
+  flex: 0 0 100%;
+  justify-content: center;
+}
+
+.pagination-number {
+  font-size: 1.6em;
+  padding: 0 .3em;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+
+.active.pagination-number {
+  color: var(--h-orange);
+}
+
+.pagination-number:hover {
+  color: #ff5601;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  padding: 1em;
+  width: 100%;
+  background: #333;
+  color: #fefe;
+}
+
+/* ----------- */
+/* PAGE LOADER */
+/* ----------- */
+.page-loader {
+  display: block;
+  position: absolute;
+  left: calc(50% - 50px);
+  top: calc(50% - 50px);
+  transition: all .3s ease;
+}
+
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader{
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  position: relative;
+  margin: 0 auto;
+}
+
+/* LOADER 1 */
+
+#loader-1:before, #loader-1:after{
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: 10px solid transparent;
+  border-top-color: var(--h-orange);
+}
+
+#loader-1:before{
+  z-index: 100;
+  animation: spin 1s infinite;
+}
+
+#loader-1:after{
+  border: 10px solid #ccc;
+}
+
+@keyframes spin{
+  0%{
+    -webkit-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100%{
+    -webkit-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
