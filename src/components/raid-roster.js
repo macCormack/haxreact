@@ -1,9 +1,10 @@
 // Todo: Import guild roster component and filter out only raiders or higher
 
 import React, { Component } from 'react';
-import raidRoster from '../data/raid-team';
+// import raidRoster from '../data/raid-team';
 import Recruiting from './helpers/recruit';
 import rProgress from '../data/raid-progress';
+import Axios from 'axios';
 
 class RaidRoster extends Component {
     constructor(props) {
@@ -11,9 +12,11 @@ class RaidRoster extends Component {
         this.state = {
             error: null,
             isLoaded: false,
-            roster: raidRoster.raiders,
+            roster: [],
             raidProgress: rProgress,
             charRoute: 'https://us.api.battle.net/wow/character/illidan/Fiisting?locale=en_US&apikey=gyu8rq8enunpykunew34bmnnubbb6qah',
+            url: 'http://localhost:3000/api/raiders',
+            accessToken: '?access_token=1iiilpiC2lqzBSuEmW8FMNFAbUN4H9FL9gzEBsRSprh9ogQvAGLbqVVQN4SwUxTK'
         };
     }
 
@@ -35,9 +38,15 @@ class RaidRoster extends Component {
             }, 100)
           }
 
-          this.setState({
-            isLoaded: true,
+          Axios.get(this.state.url + this.state.accessToken)
+          .then(res => {
+              this.setState({
+                roster: res.data,
+                isLoaded: true
+              })
+              console.log(this.state.roster);
           })
+
         })
 
         console.log(rProgress);
@@ -45,7 +54,6 @@ class RaidRoster extends Component {
 
     render() {
         const { error, isLoaded, raidProgress} = this.state;
-        // const charImg = "http://render-us.worldofwarcraft.com/character/" + roster.thumbnail;
 
 //MAC: Raid team output
         const renderRaidTeam = this.state.roster.map((r, i) => {

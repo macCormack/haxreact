@@ -61,7 +61,9 @@ class Article extends Component {
             return (
                 <div>
                     <div className="hero">
-                        <img className="hero-img" src={featImg} alt={post._embedded['wp:featuredmedia'][0].slug}></img>
+                        <div className="hero-height">
+                            <img className="hero-img" src={featImg} alt={post._embedded['wp:featuredmedia'][0].slug}></img>
+                        </div>
                     </div>
                     <div key={post.id} className="container">
                         <h1

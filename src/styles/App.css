@@ -19,6 +19,10 @@ ul {
   list-style: none;
 }
 
+.btn-primary.disabled {
+  cursor: not-allowed;
+}
+
 button:focus {
   outline: none;
 }
@@ -85,6 +89,10 @@ margin-left: 15px;
   position: relative;
   margin-bottom: 2em;
   overflow: hidden;
+}
+
+.hero-height {
+  height: auto;
 }
 
 .hero-title {
@@ -226,4 +234,13 @@ footer {
     -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.edit-container {
+  width: 100%;
+}
+
+.editLabel {
+  width: 100%;
+  font-weight: 700;
 }

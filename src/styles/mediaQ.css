@@ -4,21 +4,58 @@
     margin-left: -15px;
   }
 
+  .hero-height {
+    height: 400px;
+  }
+
+  .bg-img {
+    height: 400px;
+  }
+
   .sidebar {
     width: 100%;
   }
+
+  .category-filter.overlayCat {
+    width: 100%;
+    max-width: 120vh;
+    min-width: 768px;
+  }
+
 }
 
 @media (min-width: 992px) {
-  .bg-img {
+  .hero-height {
     height: 500px;
+  }
+
+  .bg-img {
+    height: 600px;
   }
 
   .sidebar {
     width: 15%;
   }
 
+  .category-filter.overlayCat {
+    width: 100%;
+    max-width: 120vh;
+    min-width: 992px;
+  }
+  
   .guild-roster, .raiders {
     width: 85%;
+  }
+}
+
+@media (min-width: 1198px) {
+  .category-filter.overlayCat {
+    width: 100%;
+    max-width: 120vh;
+    min-width: 1170px;
+  }
+
+  .filter-container {
+    right: -2em;
   }
 }

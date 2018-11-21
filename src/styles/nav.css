@@ -43,3 +43,38 @@
 .navbar-nav .nav-link:hover {
   color: var(--link-hover);
 }
+
+.loginForm {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+}
+
+.loginContainer.open .loginForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  padding: .7em;
+  width: 500px;
+  height: 300px;
+  background:#999;
+  transform: translate3d(-50%, -50%, 0);
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+  transition: opacity .2s ease;
+}
+
+.loginContainer.open .loginOverlay {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #333;
+  width: 100%;
+  height: 100%;
+  opacity: .95;
+  z-index: 1;
+  transition: opacity .2s ease;
+}

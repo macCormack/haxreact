@@ -7,7 +7,7 @@ export default class ArticlePreview extends Component {
 
     // MAC: if props are found render view
     if (this.props.post) {
-    const featIMG  = this.props.post._embedded['wp:featuredmedia'][0].media_details.sizes['full'].source_url;
+    const featIMG  = this.props.post._embedded['wp:featuredmedia'][0].source_url;
     const heroStyle = {
         backgroundImage: 'url('+ (featIMG) + ')'
     };
