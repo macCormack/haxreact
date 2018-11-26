@@ -7,7 +7,7 @@ class Header extends Component {
   constructor(props) {
     super(props)    
     this.state = {
-      loggedIn: localStorage.getItem('loggedIn'),
+      loggedIn: this.props.loggedIn,
       accessToken: this.props.accessToken,
       email: '',
 			password: ''
@@ -88,7 +88,7 @@ class Header extends Component {
               <label htmlFor="password">Password</label>
               <input onChange={evt => this.handleChange(evt)} name="password" type="password" className="form-control" id="password" placeholder="Password" required/>
             </div>
-            <button className="btn btn-outline my-2 my-sm-0" type="submit" onClick={evt => this.handleLogin(evt)}>Login</button>
+            <button className="btn btn-outline my-2 my-sm-0" onClick={evt => this.handleLogin(evt)}>Login</button>
           </form>
         </div>
 
