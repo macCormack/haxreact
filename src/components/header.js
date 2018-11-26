@@ -3,12 +3,14 @@ import React, { Component } from 'react';
 import '../styles/nav.css';
 import Axios from 'axios';
 
+// MAC: links for admins only
 function AdminNav() {
   return <li className="nav-item">
       <a className="nav-link" href="/edit-raid">Edit Raid</a>
     </li>;
 }
 
+// MAC: Render Admin links if logged in
 function AdminLinks(props) {
   const isLoggedIn = props.isLoggedIn;
   console.log(isLoggedIn);
@@ -30,26 +32,26 @@ class Header extends Component {
     }
   }
 
-  loginBtn(evt) {
-    document.getElementById('login-btn').classList.toggle('hidden');
-    document.getElementById('logout-btn').classList.toggle('showing');
-  }
-
+  // loginBtn(evt) {
+  //   document.getElementById('login-btn').classList.toggle('hidden');
+  //   document.getElementById('logout-btn').classList.toggle('showing');
+  // }
+// MAC: Open login modal
   openLoginForm(evt) {
     document.getElementById('login-modal').classList.add('open');
     console.log(this.state.loggedIn);
     console.log(this.state.accessToken);
   }
-  
+// MAC:Close login modal
   closeLoginForm(evt) {
     document.getElementById('login-modal').classList.remove('open');
 	}
-	
+// MAC: Change email / password state based on what's entered
 	handleChange(evt) {
 		this.setState({ [evt.target.name]: evt.target.value });
 		// console.log(evt.target.value);
 	}
-
+// MAC: Handle login post request
 	handleLogin(evt) {
 		evt.preventDefault();
 		Axios.post(this.props.loginUrl,  {
@@ -57,6 +59,7 @@ class Header extends Component {
 			password: this.state.password
 		})
 		.then(res => {
+   // MAC: setState so localstorage can save values
       this.setState({
         accessToken: res.data.id,
 				loggedIn: true
@@ -71,12 +74,13 @@ class Header extends Component {
 			console.log(error);
 		});
 	}
-
+// MAC: Handle logout post request
   handleLogout(evt) {
 		evt.preventDefault();
 		Axios.post(this.state.logoutUrl + this.state.accessToken,  {
 			id: localStorage.getItem('accessToken')
-		})
+    })
+    // MAC: Reset localStorage by resetting state
 		.then(res => {
       this.setState({
         accessToken: '',
@@ -97,6 +101,7 @@ class Header extends Component {
   render() {
       return (
         <header  className="App-header">
+        {/* Login Modal */}
         <div id="login-modal" className="loginContainer">
           <div className="loginOverlay"></div>
           <form className="loginForm">
@@ -144,6 +149,7 @@ class Header extends Component {
               <li className="nav-item">
                 <a className="nav-link" href="/media">Media</a>
               </li>
+          {/* MAC: Render the admin links if loggedIn state is true */}
               <AdminLinks isLoggedIn={this.state.loggedIn} />
             </ul>
             <div className="form-inline my-2 my-lg-0">

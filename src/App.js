@@ -11,9 +11,11 @@ import './styles/mediaQ.css'
 class App extends Component {
   constructor(props) {
     super(props);
+// MAC: set inital state 
 		var IsloggedIn = 'false';
 		var IsAuthed = '';
 
+// MAC: if localStorage has data populate that data in var and pass it down to state
     if (localStorage.getItem('loggedIn') && localStorage.getItem('accessToken')) {
       IsloggedIn = localStorage.getItem('loggedIn');
       IsAuthed = localStorage.getItem('accessToken');
@@ -23,7 +25,6 @@ class App extends Component {
 		  loggedIn: IsloggedIn,
 			accessToken: IsAuthed,
 			loginUrl: 'http://localhost:3000/api/Users/login',
-			// logoutUrl: 
     };
 	}
 
