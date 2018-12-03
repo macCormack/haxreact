@@ -13,6 +13,7 @@ import Article from './article';
 import TodoApp from './helpers/test';
 import Error404 from './helpers/404';
 import Editraid from './editRaid';
+import EditAbout from './editAbout';
 
 
 class Main extends Component {	
@@ -38,6 +39,7 @@ class Main extends Component {
 						<Route path='/test' component={TodoApp}/>
 						<Route exact path='/post/:id' component={Article}/>
 						<PrivateRoute loggedIn={this.props.loggedIn} path='/edit-raid' component={Editraid} />
+						<PrivateRoute loggedIn={this.props.loggedIn} path='/edit-about' component={EditAbout} />
 						<Route component={Error404}/>
 					</Switch>
 				</main>

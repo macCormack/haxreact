@@ -24,7 +24,7 @@ class App extends Component {
     this.state = {
 		  loggedIn: IsloggedIn,
 			accessToken: IsAuthed,
-			loginUrl: 'http://localhost:3000/api/Users/login',
+			loginUrl: 'http://localhost:3000/api/Users/login'
     };
 	}
 
@@ -36,7 +36,6 @@ class App extends Component {
         loggedIn={this.state.loggedIn}
         loginUrl={this.state.loginUrl}
         accessToken={this.state.accessToken}
-        // logoutUrl={this.state.logoutUrl}
        />
       <Main loggedIn={this.state.loggedIn} />
       <Footer />

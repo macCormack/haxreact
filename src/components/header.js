@@ -4,21 +4,19 @@ import '../styles/nav.css';
 import Axios from 'axios';
 
 // MAC: links for admins only
-function AdminNav() {
-  return <li className="nav-item">
-      <a className="nav-link" href="/edit-raid">Edit Raid</a>
-    </li>;
-}
+// function AdminNav() {
+  
+// }
 
-// MAC: Render Admin links if logged in
-function AdminLinks(props) {
-  const isLoggedIn = props.isLoggedIn;
-  console.log(isLoggedIn);
-  if (isLoggedIn === 'true') {
-    return <AdminNav />;
-  }
-  return null;
-}
+// // MAC: Render Admin links if logged in
+// function AdminLinks(props) {
+//   const isLoggedIn = props.isLoggedIn;
+//   // console.log(isLoggedIn);
+//   if (isLoggedIn === 'true') {
+//     return <AdminNav />;
+//   }
+//   return null;
+// }
 
 class Header extends Component {
   constructor(props) {
@@ -32,10 +30,30 @@ class Header extends Component {
     }
   }
 
-  // loginBtn(evt) {
-  //   document.getElementById('login-btn').classList.toggle('hidden');
-  //   document.getElementById('logout-btn').classList.toggle('showing');
-  // }
+  adminNav(evt) {
+    if (this.state.loggedIn === 'true') {
+      return <li className="nav-item dropdown">
+        <button className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Admin Links
+        </button>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a className="dropdown-item" href="/edit-raid">Edit Raid</a>
+          <a className="dropdown-item" href="/edit-about">Edit About</a>
+        </div>
+      </li>;
+    } else {
+      return null;
+    }
+  }
+
+  loginBtn(evt) {
+    if (this.state.loggedIn === 'true') {
+      return <button id="logout-btn" className="btn btn-outline-primary" onClick={evt => this.handleLogout(evt)}>Logout</button>;
+    } else {
+      return <button id="login-btn" className="btn btn-outline-primary" onClick={evt => this.openLoginForm(evt)}>Login</button>;
+    }
+  }
+
 // MAC: Open login modal
   openLoginForm(evt) {
     document.getElementById('login-modal').classList.add('open');
@@ -61,8 +79,8 @@ class Header extends Component {
 		.then(res => {
    // MAC: setState so localstorage can save values
       this.setState({
-        accessToken: res.data.id,
-				loggedIn: true
+				loggedIn: 'true',
+        accessToken: res.data.id
 			})
 			localStorage.setItem('loggedIn', this.state.loggedIn);
 			localStorage.setItem('accessToken', this.state.accessToken);
@@ -84,12 +102,12 @@ class Header extends Component {
 		.then(res => {
       this.setState({
         accessToken: '',
-				loggedIn: false
+				loggedIn: 'false'
 			})
       localStorage.setItem('loggedIn', this.state.loggedIn);
       localStorage.setItem('accessToken', this.state.accessToken);
 			console.log(res);
-			console.log(this.state);
+      console.log(this.state);
 		})
 		.catch(error => {
 			console.log(error);
@@ -114,7 +132,7 @@ class Header extends Component {
               <label htmlFor="password">Password</label>
               <input onChange={evt => this.handleChange(evt)} name="password" type="password" className="form-control" id="password" placeholder="Password" required/>
             </div>
-            <button className="btn btn-outline my-2 my-sm-0" onClick={evt => this.handleLogin(evt)}>Login</button>
+            <button id="submit" className="btn btn-outline my-2 my-sm-0" onClick={evt => this.handleLogin(evt)}>Login</button>
           </form>
         </div>
 
@@ -150,11 +168,10 @@ class Header extends Component {
                 <a className="nav-link" href="/media">Media</a>
               </li>
           {/* MAC: Render the admin links if loggedIn state is true */}
-              <AdminLinks isLoggedIn={this.state.loggedIn} />
+              {this.adminNav()}
             </ul>
             <div className="form-inline my-2 my-lg-0">
-              <button id="login-btn" className="btn btn-outline-primary" onClick={evt => this.openLoginForm(evt)}>Login</button>
-              <button id="logout-btn" className="btn btn-outline-primary" onClick={evt => this.handleLogout(evt)}>Logout</button>
+              {this.loginBtn()}
             </div>
           </div>
         </nav>
