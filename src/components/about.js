@@ -7,7 +7,7 @@ class About extends Component {
             error: null,
             isLoaded: false,
             page: [],
-            fetchPage: 'http://localhost/staging/wordpress/wp-json/wp/v2/pages/9?_embed'
+            fetchPage: 'http://localhost:3000/api/about-pages'
         };
     }
 
@@ -32,8 +32,9 @@ class About extends Component {
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        page: result
+                        page: result[0]
                     });
+                    console.log(this.state.page)
                 },
                 (error) => {
                     this.setState({
@@ -56,22 +57,22 @@ class About extends Component {
         } else if (!isLoaded){
             return <div></div>
         } else {
-            const featImg = page._embedded['wp:featuredmedia'][0].source_url;
+            // const featImg = page._embedded['wp:featuredmedia'][0].source_url;
 
-            const heroStyle = {
-                backgroundImage: 'url('+ featImg +')'
-            };
+            // const heroStyle = {
+            //     backgroundImage: 'url('+ featImg +')'
+            // };
             return (
                 <div>
-                    <div className="hero">
+                    {/* <div className="hero">
                         <div className="bg-img" style={heroStyle}>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="container">
-                        <h1 key={1} className="page-title">
-                            <span className="title-inner text-uppercase">{page.title.rendered}</span>
+                        <h1 className="page-title">
+                            <span className="title-inner text-uppercase">{page.title}</span>
                         </h1>
-                        <div key={2} dangerouslySetInnerHTML={{__html: page.content.rendered}}></div>
+                        <div>{page.content}</div>
                     </div>
                 </div>
             );
