@@ -35,7 +35,7 @@ class GuildRoster extends Component {
 
 // MAC: Fake authentication to give a promise
     authenticate(){
-        return new Promise(resolve => setTimeout(resolve, 2000))
+        return new Promise(resolve => setTimeout(resolve, 2500))
     }
 
 
@@ -50,7 +50,7 @@ class GuildRoster extends Component {
             setTimeout(() => {
               // remove from DOM
               ele.outerHTML = ''
-            }, 2000)
+            }, 2500)
           }
 // MAC: Mount the dataRoute from constructor, fetch the data then populate the character array
             fetch(this.state.dataRoute).then(res => res.json())

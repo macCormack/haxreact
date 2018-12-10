@@ -24,7 +24,7 @@ class RaidRoster extends Component {
     }
 
     authenticate(){
-        return new Promise(resolve => setTimeout(resolve, 100))
+        return new Promise(resolve => setTimeout(resolve, 800))
     }
 
     componentDidMount() {
@@ -38,7 +38,7 @@ class RaidRoster extends Component {
             setTimeout(() => {
               // remove from DOM
               ele.outerHTML = ''
-            }, 100)
+            }, 800)
           }
 
           Axios.get(this.state.url)
