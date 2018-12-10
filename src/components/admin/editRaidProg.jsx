@@ -181,7 +181,7 @@ class EditRaidProgress extends Component {
         </form>
         );
       }
-        return <h3 className="pl-2 isClickable" onClick={evt => this.editRaidName(evt, this.state.id)}>{this.state.rName}</h3>;
+        return <div className="w-100"><h3 className="w-25 pl-2 isClickable" onClick={evt => this.editRaidName(evt, this.state.id)}>{this.state.rName}</h3></div>;
     }
     
     render() {
