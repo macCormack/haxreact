@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 // import raidRoster from '../data/raid-team';
 import Recruiting from './helpers/recruit';
-import rProgress from '../data/raid-progress';
+// import rProgress from '../data/raid-progress';
 import Axios from 'axios';
 
 class RaidRoster extends Component {
@@ -13,8 +13,11 @@ class RaidRoster extends Component {
             error: null,
             isLoaded: false,
             roster: [],
-            raidProgress: rProgress,
-            charRoute: 'https://us.api.battle.net/wow/character/illidan/Fiisting?locale=en_US&apikey=gyu8rq8enunpykunew34bmnnubbb6qah',
+            progress: [],
+            progRaidName: '',
+            progRaidNameUrl: 'http://localhost:3000/api/raid-names',
+            progBossUrl: 'http://localhost:3000/api/bosses',
+            // charRoute: 'https://us.api.battle.net/wow/character/illidan/Fiisting?locale=en_US&apikey=gyu8rq8enunpykunew34bmnnubbb6qah',
             url: 'http://localhost:3000/api/raiders',
             accessToken: '?access_token=1iiilpiC2lqzBSuEmW8FMNFAbUN4H9FL9gzEBsRSprh9ogQvAGLbqVVQN4SwUxTK'
         };
@@ -38,29 +41,56 @@ class RaidRoster extends Component {
             }, 100)
           }
 
-          Axios.get(this.state.url + this.state.accessToken)
+          Axios.get(this.state.url)
           .then(res => {
-              this.setState({
+            this.setState({
                 roster: res.data,
                 isLoaded: true
               })
               console.log(this.state.roster);
           })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+          Axios.get(this.state.progBossUrl)
+          .then(res => {
+            this.setState({
+                progress: res.data,
+                isLoaded: true
+              })
+              console.log(this.state.progress);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+
+          Axios.get(this.state.progRaidNameUrl)
+          .then(res => {
+            this.setState({
+                progRaidName: res.data[0],
+                isLoaded: true
+              })
+              console.log(this.state.progRaidName);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
 
         })
 
-        console.log(rProgress);
+        // console.log(rProgress);
     }  
 
     render() {
-        const { error, isLoaded, raidProgress} = this.state;
+        const { error, isLoaded} = this.state;
 
 //MAC: Raid team output
         const renderRaidTeam = this.state.roster.map((r, i) => {
             return (
                 <ul key={i} className="col-6 col-md-3 col-lg-3 raider">
-                    <a target="_blank" href={`https://worldofwarcraft.com/en-us/character/${r.realm}/${r.name}`}>
                     <li><img className="thumbnail" src={`http://render-us.worldofwarcraft.com/character/${r.thumbnail}`} alt={`${r.name}'s portrait`} /></li>
+                    <a target="_blank" href={`https://worldofwarcraft.com/en-us/character/${r.realm}/${r.name}`}>
                     <li>
                         <h5 className="raider-name">
                             {r.name}
@@ -74,9 +104,9 @@ class RaidRoster extends Component {
             );
         })
 
-        const progBosses = raidProgress.bosses.map(rPB => {
+        const progBosses = this.state.progress.map(rPB => {
             return (
-                <li>{rPB.name}<span className="float-right">{rPB.difficulty}</span></li>
+                <li>{rPB.bossName}<span className="float-right">{rPB.difficulty}</span></li>
             );
         })
 
@@ -99,7 +129,9 @@ class RaidRoster extends Component {
                             <div className="raid-progress">
                             <h3 className="page-title sub-title"><span className="title-inner">Progress</span></h3>
                                 <ul>
-                                    <li><h5 className="text-uppercase">Raid: <span className="font-weight-bold">{raidProgress.raid}</span></h5></li>
+                                    <li><h5 className="text-uppercase">Raid:
+                                        <span className="font-weight-bold"> {this.state.progRaidName.name}</span>
+                                    </h5></li>
                                     {progBosses}
                                 </ul>
                             </div>

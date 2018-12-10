@@ -3,21 +3,6 @@ import React, { Component } from 'react';
 import '../styles/nav.css';
 import Axios from 'axios';
 
-// MAC: links for admins only
-// function AdminNav() {
-  
-// }
-
-// // MAC: Render Admin links if logged in
-// function AdminLinks(props) {
-//   const isLoggedIn = props.isLoggedIn;
-//   // console.log(isLoggedIn);
-//   if (isLoggedIn === 'true') {
-//     return <AdminNav />;
-//   }
-//   return null;
-// }
-
 class Header extends Component {
   constructor(props) {
     super(props)    
@@ -30,15 +15,18 @@ class Header extends Component {
     }
   }
 
+// MAC: admin nav for when logged in. Only shows if loggedIn === true
   adminNav(evt) {
     if (this.state.loggedIn === 'true') {
       return <li className="nav-item dropdown">
         <button className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Admin Links
+          Edit Pages
         </button>
         <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a className="dropdown-item" href="/edit-raid">Edit Raid</a>
-          <a className="dropdown-item" href="/edit-about">Edit About</a>
+          <a className="dropdown-item" href="/edit-about">About</a>
+          <a className="dropdown-item" href="/edit-raid">Raid Team</a>
+          <a className="dropdown-item" href="/edit-raid-prog">Raid Progress</a>
+          <a className="dropdown-item" href="/edit-recruit">Raid Recruitment</a>
         </div>
       </li>;
     } else {
@@ -163,9 +151,6 @@ class Header extends Component {
                   <a className="dropdown-item" href="/raid-roster">Raid Roster</a>
                   <a className="dropdown-item" href="https://goo.gl/forms/o59prAd3Y9LuLAG43" target="_blank" rel="noopener noreferrer">Raid Sign Up</a>
                 </div>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/media">Media</a>
               </li>
           {/* MAC: Render the admin links if loggedIn state is true */}
               {this.adminNav()}

@@ -236,6 +236,9 @@ footer {
   }
 }
 
+   /*               */
+  /* ADMIN STUFFS */
+ /*             */
 .edit-container {
   width: 100%;
 }
@@ -243,4 +246,31 @@ footer {
 .editLabel {
   width: 100%;
   font-weight: 700;
+}
+
+button.link, .link.input-group-append {
+  cursor: pointer;
+}
+
+button.link, .link .input-group-text {
+  display: flex;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid #ced4da;
+  background-color: #e9ecef;
+  color: #495057;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+button.link:hover, .link .input-group-text:hover {
+  background-color: #bbb;
+}
+
+.isClickable {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.isClickable:hover {
+  color: var(--h-orange);
 }

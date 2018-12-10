@@ -83,7 +83,7 @@ class EditAbout extends Component {
 
 
         // MAC: Render current raid team for editing or deletion.
-        const raidTeam = 
+        const editAboutForm = 
           <form className="col-12 pad-b-2">
             <div className="input-group mb-3">
               <label className="editLabel">Title
@@ -97,32 +97,6 @@ class EditAbout extends Component {
             </div>
             <button id="submit" className="btn btn-primary" onClick={evt => this.handleSubmit(evt)}>Submit</button>
           </form>;
-
-      //MAC: Create a new raiders form layout
-        // const EditAboutForm =
-        //         <form className="col-12 pad-b-2">
-        //           <div className="input-group mb-3">
-        //             <label className="editLabel">Title
-        //               <input name="title" type="text" className="form-control" onChange={evt => this.handleChange(evt)} placeholder='About' aria-label="Name" aria-describedby="Title for about page"></input>
-        //             </label>
-        //           </div>
-        //           <div className="input-group mb-3">
-        //             <label className="editLabel">Content
-        //               <textarea name="realm" type="text" className="form-control" onChange={evt => this.handleChange(evt)} placeholder='' aria-label="Realm" aria-describedby="realm the character is on"></textarea>
-        //             </label>
-        //           </div>
-        //           <button id="submit" className="btn btn-primary" onClick={evt => this.handleSubmit(evt)}>Submit</button>
-        //         </form>;
-
-// MAC: Render form for deletion of raider.
-        // const deleteRaider = 
-        //   <form className="col-12">
-        //     <label className="editLabel">ID
-        //       <input name="id" type="text" className="form-control" onChange={evt => this.handleChange(evt)} placeholder='5bf345fa365c2260dc8931a0' aria-label="delete raider" aria-describedby="ID for character"></input>
-        //     </label>
-        //     <button id="deleteRaider" className="btn btn-primary" onClick={evt => this.handleDelete(evt)}>Submit</button>
-        //   </form>
-        // ;
         
         if (error) {
             return <div>Error: {error.message}</div>;
@@ -133,15 +107,7 @@ class EditAbout extends Component {
               <div className="container">
                 <div className="row">
                     <h1 className="page-title"><span className="title-inner">Edit About</span></h1>
-                    
-                    <div className="row edit-container">
-                      {/* <h3 className="col-12">Current Raiders</h3> */}
-                      {raidTeam}
-                      {/* <h3 className="col-12">Add New Raider</h3>
-                        {EditAboutForm} */}
-                      {/* <h3 className="col-12">Delete Raider</h3>
-                        {deleteRaider} */}
-                    </div>
+                      {editAboutForm}
                 </div>
               </div>
             ];
