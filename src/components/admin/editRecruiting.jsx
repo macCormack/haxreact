@@ -78,7 +78,8 @@ class EditRecruit extends Component {
     removeEditField() {
       this.setState({
         selectedBoss: false,
-        selectedId: null
+        selectedId: null,
+        needed: ''
       })
     }
 
@@ -138,12 +139,12 @@ class EditRecruit extends Component {
       if(this.state.needed.length >= 2) {
        return this.state.needed.map((role, i) => {
           return (
-              <span key={i} className="pr-1">{role}</span>
+              <span key={i} className="pr-2 font-weight-bold">{role}</span>
           );
         });
       } else {
         // console.log(this.state.needed.length);
-        return <span>{this.state.needed}</span>;
+        return <span className="font-weight-bold">{this.state.needed}</span>;
       }
     }
 
@@ -175,7 +176,7 @@ class EditRecruit extends Component {
 
         })
 
-      }  
+      }
       
       render() {
         const { error, isLoaded} = this.state;
@@ -184,19 +185,22 @@ class EditRecruit extends Component {
         const renderClasses =  this.state.recruitData.map((rD, i) => {
           if(this.state.selectedId === rD.id) {
             return( 
-              <form key={i} className="col-4">
+              <form key={i} className="col-2">
                 <div className="input-group mb-2">
                     <input name="class" type="text" className="form-control mb-2" onChange={evt => this.handleChange(evt, rD.id)} aria-label="Raid Boss Name" value={this.state.class} placeholder={rD.class} required></input>
-                <div className="input-group mb-3">
-                    <input name="recruiting" type="text" className="form-control" onChange={evt => this.handleChange(evt, rD.id)} aria-label="Raid Boss Difficulty" value={this.state.recruiting} placeholder={rD.recruiting} required></input>
-                </div>
+                    <div className="input-group mb-3">
+                      <select className="form-control" name="recruiting" value={this.state.recruiting} onChange={evt => this.handleChange(evt)}>
+                        <option>true</option>
+                        <option>false</option>
+                      </select>
+                    </div>
                 <div className="input-group mb-3">
                   <select multiple className="form-control" name="needed" id="needed" value={this.state.needed} onChange={evt => this.handleSelectChanges(evt)}>
                     <option>DPS</option>
                     <option>Heals</option>
                     <option>Tank</option>
                   </select>
-                  <span className="w-100 pr-1 font-weight-bold">Currently Selected:</span>
+                  <span className="w-100 pr-1">Currently Selected:</span>
                   {this.mapChoice()}
                 </div>
                   <button type="submit" className="link" onClick={evt => this.submitEdits(evt, rD.id)} title="Sumbit">
@@ -218,9 +222,9 @@ class EditRecruit extends Component {
           return(
               <div className="col-2 mb-3">
                 <ul key={i} className="isClickable" onClick={evt => this.editClass(evt, rD.id, rD.class, rD.recruiting, rD.needed)}>
-                  <li><span className="font-weight-bold">Class: </span>{rD.class}</li>
-                  <li><span className="font-weight-bold">Active: </span>{rD.recruiting}</li>
-                  <span className="font-weight-bold">Role: </span>
+                  <li className="font-weight-bold"><span className="font-weight-normal">Class: </span>{rD.class}</li>
+                  <li className="font-weight-bold"><span className="font-weight-normal">Active: </span>{rD.recruiting}</li>
+                  <span className="">Role: </span>
                   {rD.needed.map((role, i) =>{
                     return <li key={i} className="d-inline pr-1">{dpsTest(role)}</li>
                   })}
@@ -229,8 +233,7 @@ class EditRecruit extends Component {
             );
         });       
 
-        const editRecruits =
-        <form className="col-12 pad-b-2">
+        const editRecruits = <form className="col-12 pad-b-2">
             <div className="input-group mb-3">
               <label className="editLabel">Class
                 <input name="class" type="text" className="form-control" value={this.state.title} onChange={evt => this.handleChange(evt)} aria-label="title" aria-describedby="Title for about page"></input>
@@ -271,7 +274,7 @@ class EditRecruit extends Component {
             return [
               <div className="container">
                 <div className="row">
-                    <h1 className="page-title"><span className="title-inner">Edit Recruiting</span></h1>
+                    <h1 className="page-title"><span className="title-inner">Class Recruitment</span></h1>
                     {this.formMessages()}
                     {renderClasses}
                     <h2  className="col-12 mb-3">Submit New Recruit</h2>
