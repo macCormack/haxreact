@@ -21,11 +21,11 @@ class EditAbout extends Component {
       console.log(evt.target.value);
     }
 
-    handleSubmit(evt) {
+    handleSubmit(evt, ID) {
       // evt.preventDefault();
-      axios.post(this.state.url + this.state.accessToken, {
+      axios.put(this.state.url + '/' + ID + this.state.accessToken, {
         title: this.state.title,
-        content: this.state.content,
+        content: this.state.content
       })
       .then(function (response) {
         console.log(response);
@@ -33,16 +33,6 @@ class EditAbout extends Component {
       .catch(function (error) {
         console.log(error);
       });
-      //Delete the first entry so only one about post is made at a time.
-      axios.delete(this.state.url + '/' + this.state.id + this.state.accessToken, {
-        id: this.state.id
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error){
-        console.log(error);
-      }); 
     }
 
     authenticate(){
@@ -86,16 +76,11 @@ class EditAbout extends Component {
         const editAboutForm = 
           <form className="col-12 pad-b-2">
             <div className="input-group mb-3">
-              <label className="editLabel">Title
-                <input name="title" type="text" className="form-control" value={this.state.title} onChange={evt => this.handleChange(evt)} aria-label="title" aria-describedby="Title for about page"></input>
-              </label>
-            </div>
-            <div className="input-group mb-3">
               <label className="editLabel">Content
                 <textarea name="content" type="text" className="form-control" value={this.state.content} onChange={evt => this.handleChange(evt)} aria-label="content" aria-describedby="content for about page" rows="5"></textarea>
               </label>
             </div>
-            <button id="submit" className="btn btn-primary" onClick={evt => this.handleSubmit(evt)}>Submit</button>
+            <button id="submit" className="btn btn-primary" onClick={evt => this.handleSubmit(evt, this.state.id)}>Submit</button>
           </form>;
         
         if (error) {

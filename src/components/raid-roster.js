@@ -24,7 +24,7 @@ class RaidRoster extends Component {
     }
 
     authenticate(){
-        return new Promise(resolve => setTimeout(resolve, 800))
+        return new Promise(resolve => setTimeout(resolve, 1000))
     }
 
     componentDidMount() {
@@ -38,7 +38,7 @@ class RaidRoster extends Component {
             setTimeout(() => {
               // remove from DOM
               ele.outerHTML = ''
-            }, 800)
+            }, 1000)
           }
 
           Axios.get(this.state.url)
@@ -89,14 +89,16 @@ class RaidRoster extends Component {
         const renderRaidTeam = this.state.roster.map((r, i) => {
             return (
                 <ul key={i} className="col-6 col-md-3 col-lg-3 raider">
-                    <li><img className="thumbnail" src={`http://render-us.worldofwarcraft.com/character/${r.thumbnail}`} alt={`${r.name}'s portrait`} /></li>
-                    <a target="_blank" href={`https://worldofwarcraft.com/en-us/character/${r.realm}/${r.name}`}>
+                    <li><a target="_blank" href={`https://worldofwarcraft.com/en-us/character/${r.realm}/${r.name}`}>
+                        <img className="thumbnail" src={`http://render-us.worldofwarcraft.com/character/${r.thumbnail}`} alt={`${r.name}'s portrait`} />
+                    </a></li>
                     <li>
+                    <a target="_blank" href={`https://worldofwarcraft.com/en-us/character/${r.realm}/${r.name}`}>
                         <h5 className="raider-name">
                             {r.name}
                         </h5>
-                    </li>
                     </a>
+                    </li>
                     <li><b>Class:</b> {r.class}</li>
                     <li><b>Role:</b> {r.role}</li>
                     <li><a target="_blank" href={`https://www.warcraftlogs.com/character/us/${r.realm}/${r.name}`}>Warcraft Logs</a></li>
