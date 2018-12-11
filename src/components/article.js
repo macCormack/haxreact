@@ -48,7 +48,7 @@ class Article extends Component {
 
     render() {
         const { error, isLoaded, post} = this.state;
-        console.log(this.state)
+        // console.log(this.state)
 
         
         if (error) {

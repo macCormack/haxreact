@@ -35,7 +35,7 @@ class Media extends Component {
                   .then(res => {
                     const images = res.data;
                     this.setState({ images });
-                    console.log(this.state)
+                    // console.log(this.state)
             })
         })
     }

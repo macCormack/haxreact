@@ -38,7 +38,7 @@ export default class Home extends Component {
       )
       .then(res => {
         this.setState({ posts: res.data, filteredPosts:[], isShowing: false });
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch(error => console.log(error));
     })
@@ -55,7 +55,6 @@ export default class Home extends Component {
     } else {
       postsOutput = renderPosts
     }
-    // console.log();
       return ( 
         <div className="container">
           <div className="row position-relative">
@@ -99,7 +98,7 @@ export default class Home extends Component {
         isShowing: true
       });
       document.getElementById('filter-toggle').classList.toggle('open');
-      console.log(filterWow);
+      // console.log(filterWow);
     }
     // MAC: Resetting the filter function
     filterReset(event) { 
@@ -109,6 +108,6 @@ export default class Home extends Component {
         isShowing: false
       });
       document.getElementById('filter-toggle').classList.toggle('open');
-      console.log(this.state.posts);
+      // console.log(this.state.posts);
     }
 }

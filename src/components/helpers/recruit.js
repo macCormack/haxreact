@@ -19,7 +19,7 @@ class Recruiting extends Component {
         this.setState({
             recruitment: res.data
         })
-        console.log(this.state.recruitment);
+        // console.log(this.state.recruitment);
         })
     }
 

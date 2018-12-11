@@ -45,8 +45,8 @@ class Header extends Component {
 // MAC: Open login modal
   openLoginForm(evt) {
     document.getElementById('login-modal').classList.add('open');
-    console.log(this.state.loggedIn);
-    console.log(this.state.accessToken);
+    // console.log(this.state.loggedIn);
+    // console.log(this.state.accessToken);
   }
 // MAC:Close login modal
   closeLoginForm(evt) {
@@ -72,8 +72,8 @@ class Header extends Component {
 			})
 			localStorage.setItem('loggedIn', this.state.loggedIn);
 			localStorage.setItem('accessToken', this.state.accessToken);
-			console.log(res);
-      console.log(this.state);
+			// console.log(res);
+      // console.log(this.state);
       this.closeLoginForm();
 		})
 		.catch(error => {
@@ -94,8 +94,8 @@ class Header extends Component {
 			})
       localStorage.setItem('loggedIn', this.state.loggedIn);
       localStorage.setItem('accessToken', this.state.accessToken);
-			console.log(res);
-      console.log(this.state);
+			// console.log(res);
+      // console.log(this.state);
 		})
 		.catch(error => {
 			console.log(error);

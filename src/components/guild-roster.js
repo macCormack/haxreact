@@ -124,7 +124,7 @@ class GuildRoster extends Component {
                 </li>
             );
         });
-        console.log(this.state);
+        // console.log(this.state);
 
         if (error) {
             return <div>Error: {error.message}</div>;

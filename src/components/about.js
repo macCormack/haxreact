@@ -34,7 +34,7 @@ class About extends Component {
                         isLoaded: true,
                         page: result[0]
                     });
-                    console.log(this.state.page)
+                    // console.log(this.state.page)
                 },
                 (error) => {
                     this.setState({
@@ -49,7 +49,7 @@ class About extends Component {
 
     render() {
         const { error, isLoaded, page} = this.state;
-        console.log(this.state)
+        // console.log(this.state)
 
         
         if (error) {

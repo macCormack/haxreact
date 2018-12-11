@@ -18,7 +18,7 @@ class EditAbout extends Component {
 
     handleChange(evt) {
       this.setState({ [evt.target.name]: evt.target.value });
-      console.log(evt.target.value);
+      // console.log(evt.target.value);
     }
 
     handleSubmit(evt, ID) {
@@ -28,7 +28,7 @@ class EditAbout extends Component {
         content: this.state.content
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -61,7 +61,7 @@ class EditAbout extends Component {
               content: res.data[0].content,
               id: res.data[0].id
             })
-            console.log(this.state.aData[0]);
+            // console.log(this.state.aData[0]);
           })
 
         })

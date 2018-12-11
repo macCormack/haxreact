@@ -49,7 +49,7 @@ class EditRecruit extends Component {
         recruiting: Recruiting,
         needed: role
       })
-      console.log(id);
+      // console.log(id);
     }
 
     handleSelectChanges(evt) {
@@ -66,12 +66,12 @@ class EditRecruit extends Component {
         needed: selectedList
       })
       // alert(selectedList.join(",") );
-      console.log(this.state.needed);
+      // console.log(this.state.needed);
   }
 
     handleChange(evt) {
       this.setState({ [evt.target.name]: evt.target.value });
-      console.log(evt.target.value);
+      // console.log(evt.target.value);
       // console.log(this.state.needDps, this.state.needHeals)
     }
 
@@ -99,13 +99,13 @@ class EditRecruit extends Component {
           this.setState({
             success: 'Success data has been submitted'
           })
-          console.log(this.state.success);
+          // console.log(this.state.success);
         })
         .catch((error) => {
           this.setState({
             errorTxt: 'Error we could not submit your info. Make sure you filled out every field'
           })
-          console.log(this.state.errorTxt);
+          // console.log(this.state.errorTxt);
         });
       }
     }
@@ -118,20 +118,20 @@ class EditRecruit extends Component {
         needed: this.state.needed
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
       });
       //Delete the first entry so only one about post is made at a time.
       axios.delete(this.state.url + '/' + this.state.id + this.state.accessToken, {
         id: this.state.id
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error){
-        console.log(error);
+        // console.log(error);
       }); 
     }
 
@@ -171,7 +171,7 @@ class EditRecruit extends Component {
               recruitData: res.data,
               isLoaded: true
             })
-            console.log(this.state.recruitData);
+            // console.log(this.state.recruitData);
           })
 
         })

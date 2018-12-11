@@ -33,12 +33,12 @@ class Editraid extends Component {
         role:   Role,
         realm:  Realm
       })
-      console.log(clickedId);
+      // console.log(clickedId);
     }
 
     handleChange(evt) {
       this.setState({ [evt.target.name]: evt.target.value });
-      console.log(evt.target.value);
+      // console.log(evt.target.value);
     }
 
     submitEdit(evt, id) {
@@ -55,7 +55,7 @@ class Editraid extends Component {
 
         })
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
         })
         .catch(function (error) {
           console.log(error);
@@ -72,7 +72,7 @@ class Editraid extends Component {
         realm: this.state.realm,
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -100,7 +100,7 @@ class Editraid extends Component {
         id: currentId,
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -113,7 +113,7 @@ class Editraid extends Component {
         id: this.state.id
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error){
         console.log(error);
@@ -143,7 +143,7 @@ class Editraid extends Component {
               roster: res.data,
               isLoaded: true
             })
-            console.log(this.state.roster);
+            // console.log(this.state.roster);
           })
 
         })

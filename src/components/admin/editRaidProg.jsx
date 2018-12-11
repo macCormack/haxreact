@@ -29,7 +29,7 @@ class EditRaidProgress extends Component {
         selectedRaidName: true,
         selectedId: id
       })
-      console.log(id);
+      // console.log(id);
     }
 
     editField(clickedId) {
@@ -37,7 +37,7 @@ class EditRaidProgress extends Component {
         selectedBoss: true,
         selectedId: clickedId
       })
-      console.log(clickedId);
+      // console.log(clickedId);
     }
 
     removeEditField(clickedId) {
@@ -61,7 +61,7 @@ class EditRaidProgress extends Component {
         id: currentId,
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -70,7 +70,7 @@ class EditRaidProgress extends Component {
 
     handleChange(evt) {
       this.setState({ [evt.target.name]: evt.target.value });
-      console.log(evt.target.value);
+      // console.log(evt.target.value);
     }
 
     submitRaidName(evt, id) {
@@ -79,7 +79,7 @@ class EditRaidProgress extends Component {
         name: this.state.name
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -96,7 +96,7 @@ class EditRaidProgress extends Component {
           difficulty: this.state.difficulty
         })
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
         })
         .catch(function (error) {
           console.log(error);
@@ -111,7 +111,7 @@ class EditRaidProgress extends Component {
         difficulty: this.state.difficulty
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
       })
       .catch(function (error) {
         console.log(error);
@@ -142,7 +142,7 @@ class EditRaidProgress extends Component {
               rName: res.data[0].name,
               id: res.data[0].id
             })
-            console.log(this.state.rName);
+            // console.log(this.state.rName);
           })
           // MAC: Fetch bosses
           axios.get(this.state.bossUrl).then(res => {
@@ -151,7 +151,7 @@ class EditRaidProgress extends Component {
                 isLoaded: true,
                 bossId: res.data.id,
             })
-            console.log(this.state.progress);
+            // console.log(this.state.progress);
           });
 
         })

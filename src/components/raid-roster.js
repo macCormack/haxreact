@@ -47,7 +47,7 @@ class RaidRoster extends Component {
                 roster: res.data,
                 isLoaded: true
               })
-              console.log(this.state.roster);
+            //   console.log(this.state.roster);
           })
           .catch(function (error) {
             console.log(error);
@@ -59,7 +59,7 @@ class RaidRoster extends Component {
                 progress: res.data,
                 isLoaded: true
               })
-              console.log(this.state.progress);
+            //   console.log(this.state.progress);
           })
           .catch(function (error) {
             console.log(error);
@@ -71,7 +71,7 @@ class RaidRoster extends Component {
                 progRaidName: res.data[0],
                 isLoaded: true
               })
-              console.log(this.state.progRaidName);
+            //   console.log(this.state.progRaidName);
           })
           .catch(function (error) {
             console.log(error);
